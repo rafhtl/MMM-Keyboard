@@ -120,3 +120,4 @@ For further implementations, contact me or send it as an issue here!
 Thanks go to
 - Francisco Hodge for his beautiful simple-keyboard npm module
 - @jheyman for alpha testing :-)
+- rdr

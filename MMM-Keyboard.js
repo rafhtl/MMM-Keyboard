@@ -8,6 +8,8 @@ Module.register("MMM-Keyboard", {
     startUppercase: true,
     startWithNumbers: false,
     debug: false,
+    title: "TESTing oaoaudoiasu iusdoia usdio oiausd oiuoasiud  1233234234 23423423 423234 5345345 3534656767 677",
+    // pass hidden as style to hide keyboard
   },
 
   layouts: {},
@@ -64,6 +66,12 @@ Module.register("MMM-Keyboard", {
     }
     this.kbContainer = document.createElement("div");
     this.kbContainer.className = "kbContainer";
+    //title
+    var titleDiv = document.createElement("div");
+    titleDiv.id = "titleDiv";
+    titleDiv.style.display = "none";
+    titleDiv.innerHTML = this.config.title;
+    
     var inputDiv = document.createElement("div");
     inputDiv.id = "inputDiv";
     inputDiv.style.display = "none";
@@ -93,6 +101,7 @@ Module.register("MMM-Keyboard", {
     inputDiv.appendChild(input);
     inputDiv.appendChild(send);
     inputDiv.appendChild(hideButton);
+    this.kbContainer.appendChild(titleDiv);
     this.kbContainer.appendChild(inputDiv);
     var kb = document.createElement("div");
     kb.className = "simple-keyboard";
@@ -110,11 +119,19 @@ Module.register("MMM-Keyboard", {
       this.log("Activating Keyboard!");
       this.currentKey = payload.key;
       this.currentData = payload.data;
-      var layout = (payload.style == "default") ? ((this.config.startUppercase) ? "shift" : "default") : "numbers";
-      this.keyboard.setOptions({
-        layoutName: layout
-      });
-      this.showKeyboard();
+      if(payload.style == "hidden"){
+          this.hideKeyboard();
+      }else{    
+          var layout = (payload.style == "default") ? ((this.config.startUppercase) ? "shift" : "default") : "numbers";
+          this.keyboard.setOptions({
+            layoutName: layout
+          });
+          var title = (payload.title == "" || payload.title ==null) ?  this.config.title="": this.config.title=payload.title;
+          this.showKeyboard(title);
+      }
+      
+      
+      
     }
   },
 
@@ -242,9 +259,13 @@ Module.register("MMM-Keyboard", {
     });
   },
 
-  showKeyboard: function() {
+  showKeyboard: function(title) {
     this.kbContainer.classList.add("show-keyboard");
     document.getElementById("inputDiv").style.display = "block";
+    if(title!="" && title!=null){
+        document.getElementById("titleDiv").innerHTML =title;
+        document.getElementById("titleDiv").style.display = "block";
+    }
     document.getElementById("kbInput").value = this.keyboard.getInput();
   },
 

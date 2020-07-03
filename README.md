@@ -1,5 +1,10 @@
 # MMM-Keyboard
 
+rdrhtl
+
+added support for title 
+(call the keyboard with id,style,title
+
 ![Example image](keyboard-example.jpg)
 
 A module for the [MagicMirror²](https://github.com/MichMich/MagicMirror/) that creates a virtual keyboard to be used to send commands or text to other modules
@@ -13,7 +18,7 @@ A module for the [MagicMirror²](https://github.com/MichMich/MagicMirror/) that 
 ### Step 1 - Install the module
 ```javascript
 cd ~/MagicMirror/modules
-git clone https://github.com/lavolp3/MMM-Keyboard.git
+git clone https://github.com/rafhtl/MMM-Keyboard.git
 cd MMM-Keyboard
 npm install
 ```
